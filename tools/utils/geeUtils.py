@@ -1,6 +1,6 @@
 import json
 import urllib.parse
-
+import os
 import execjs
 import requests
 import ddddocr
@@ -12,8 +12,12 @@ headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0"
 }
 
-with open('geeTest.js', 'r') as f:
+current_path = os.path.abspath(os.path.dirname(__file__))
+
+
+with open(f'{current_path}/tools/geeTest.js', 'r') as f:
     geeTestText = f.read()
+    print (geeTestText)
 
 def _convertCallBack(callBackSign:str, context:str):
     return json.loads(context[len(callBackSign) + 1: len(context) - 1])
